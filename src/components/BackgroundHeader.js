@@ -8,19 +8,19 @@ const W = Dimensions.get('window').width;
  * Create Background Gradient
  */
 
-export default function BackgroundHeader() {
+export default BackgroundHeader = ({style}) => {
   return (
     <LinearGradient
       start={{x: 0, y: 0}}
       end={{x: 1, y: 0}}
-      style={styles.linearGradient}
+      style={[styles.linearGradient, style]}
       colors={['#5d0e7f', '#7a007e', '#9c007f']}>
       <View style={styles.line}></View>
       <View style={[styles.line, {top: 130, left: -150}]}></View>
       <View style={[styles.line, {top: 160, left: 0}]}></View>
     </LinearGradient>
   );
-}
+};
 
 const styles = StyleSheet.create({
   linearGradient: {
