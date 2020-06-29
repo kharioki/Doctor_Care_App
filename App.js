@@ -10,6 +10,7 @@ import {
 import BackgroundHeader from './src/components/BackgroundHeader';
 import BottomTab from './src/components/BottomTab';
 import HomeScreen from './src/HomeScreen';
+import SearchScreen from './src/SearchScreen';
 
 const App = () => {
   return (
@@ -18,7 +19,8 @@ const App = () => {
       <View style={styles.container}>
         <BackgroundHeader style={styles.bg} />
         <ScrollView style={styles.scrollView}>
-          <HomeScreen />
+          {/*<HomeScreen />*/}
+          <SearchScreen />
         </ScrollView>
         <BottomTab />
       </View>
