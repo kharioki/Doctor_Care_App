@@ -19,12 +19,15 @@ const Face = ({icon, title, color, full}) => {
   );
 };
 
-const Rating = ({}) => {
+const Rating = ({rating}) => {
     return (
         <View style={styles.rating}>
           {Array(5)
             .fill(0)
             .map((_, i) => {
+                if(rating > i){
+                    return <AntDesign name='star' color='#fa8d00' key={i} style={{marginRight: 5}} />
+                }
               return <AntDesign name='staro' key={i} style={{marginRight: 5}} />
           })}
         </View>
@@ -52,7 +55,7 @@ const CardHome = ({title, info}) => {
             <Text style={styles.cardTime}>{info.time}</Text>
             <Text style={styles.cardAddress}>{info.address1}</Text>
             <Text style={styles.cardAddress}>{info.address2}</Text>
-            <Rating />
+            {info.rating && <Rating rating={info.rating} />}
             <View style={styles.iconMore}>
               <Icon name="angle-right" color="gray" />
             </View>
