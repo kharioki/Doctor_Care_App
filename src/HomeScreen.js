@@ -20,33 +20,42 @@ const Face = ({icon, title, color, full}) => {
 };
 
 const Rating = ({rating}) => {
-    return (
-        <View style={styles.rating}>
-          {Array(5)
-            .fill(0)
-            .map((_, i) => {
-                if(rating > i){
-                    return <AntDesign name='star' color='#fa8d00' key={i} style={{marginRight: 5}} />
-                }
-              return <AntDesign name='staro' key={i} style={{marginRight: 5}} />
-          })}
-        </View>
-    )
-}
+  return (
+    <View style={styles.rating}>
+      {Array(5)
+        .fill(0)
+        .map((_, i) => {
+          if (rating > i) {
+            return (
+              <AntDesign
+                name="star"
+                color="#fa8d00"
+                key={i}
+                style={{marginRight: 5}}
+              />
+            );
+          }
+          return <AntDesign name="staro" key={i} style={{marginRight: 5}} />;
+        })}
+    </View>
+  );
+};
 
-const CardHome = ({title, info}) => {
+export const CardHome = ({title, noHeader, info, noFooter}) => {
   return (
     <View style={styles.cardContainer}>
-      <View style={styles.cardHeaderContainer}>
-        <Text style={styles.cardHeading}>{title}</Text>
-        <Text style={styles.cardMore}>See All</Text>
-      </View>
+      {!noHeader && (
+        <View style={styles.cardHeaderContainer}>
+          <Text style={styles.cardHeading}>{title}</Text>
+          <Text style={styles.cardMore}>See All</Text>
+        </View>
+      )}
       <View style={styles.cardBody}>
         <View style={styles.cardBodyTop}>
           <Image
             style={styles.cardAvatar}
             source={{
-              uri: info.avatar
+              uri: info.avatar,
             }}
           />
           <View style={styles.cardLeftSide}>
@@ -59,30 +68,34 @@ const CardHome = ({title, info}) => {
             <View style={styles.iconMore}>
               <Icon name="angle-right" color="gray" />
             </View>
-            {info.isLike && <View style={styles.iconLike}>
-              <Icon name="heart" color="#e8008d" size={22} />
-            </View>}
+            {info.isLike && (
+              <View style={styles.iconLike}>
+                <Icon name="heart" color="#e8008d" size={22} />
+              </View>
+            )}
           </View>
         </View>
         <View style={styles.margin}></View>
-        <View style={styles.cardBodyBottom}>
-          <View style={styles.cardGroupIcon}>
-            <AntDesign name="checkcircleo" size={36} />
-            <Text style={styles.cardBottomText}>Check In</Text>
+        {!noFooter && (
+          <View style={styles.cardBodyBottom}>
+            <View style={styles.cardGroupIcon}>
+              <AntDesign name="checkcircleo" size={36} />
+              <Text style={styles.cardBottomText}>Check In</Text>
+            </View>
+            <View style={styles.cardGroupIcon}>
+              <AntDesign name="closecircleo" size={36} />
+              <Text style={styles.cardBottomText}>Cancel</Text>
+            </View>
+            <View style={styles.cardGroupIcon}>
+              <AntDesign name="calendar" size={36} />
+              <Text style={styles.cardBottomText}>Calendar</Text>
+            </View>
+            <View style={styles.cardGroupIcon}>
+              <MaterialCommunityIcons name="compass-outline" size={36} />
+              <Text style={styles.cardBottomText}>Directions</Text>
+            </View>
           </View>
-          <View style={styles.cardGroupIcon}>
-            <AntDesign name="closecircleo" size={36} />
-            <Text style={styles.cardBottomText}>Cancel</Text>
-          </View>
-          <View style={styles.cardGroupIcon}>
-            <AntDesign name="calendar" size={36} />
-            <Text style={styles.cardBottomText}>Calendar</Text>
-          </View>
-          <View style={styles.cardGroupIcon}>
-            <MaterialCommunityIcons name="compass-outline" size={36} />
-            <Text style={styles.cardBottomText}>Directions</Text>
-          </View>
-        </View>
+        )}
       </View>
     </View>
   );
@@ -103,28 +116,31 @@ export default function HomeScreen() {
         <Face icon="expressionless" title="Awful" />
       </View>
       <View>
-        <CardHome 
-          title='Your Next Appointment' 
+        <CardHome
+          title="Your Next Appointment"
           info={{
-            avatar: 'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQAxCiVB3o9i7-04KXexFIDpbxEhUkmxQ14KQ&usqp=CAU',
-            name: 'Dr R Bruce Banner', 
-            time: 'Sunday, July 15th at 8:45 PM', 
+            avatar:
+              'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQAxCiVB3o9i7-04KXexFIDpbxEhUkmxQ14KQ&usqp=CAU',
+            name: 'Dr R Bruce Banner',
+            time: 'Sunday, July 15th at 8:45 PM',
             address1: '87 Waiyaki Way',
-            address2: 'Westlands, Nairobi 00800'
+            address2: 'Westlands, Nairobi 00800',
           }}
         />
-        <CardHome 
-        title='Specialist in your area' 
-        info={{
-            avatar: 'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSiB83zs24_peVmkkZ-nKLrAzO5_ZbjJR_amg&usqp=CAU', 
-            name: 'Dr Hellen Cho', 
+        <CardHome
+          title="Specialist in your area"
+          info={{
+            avatar:
+              'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSiB83zs24_peVmkkZ-nKLrAzO5_ZbjJR_amg&usqp=CAU',
+            name: 'Dr Hellen Cho',
             time: 'Avengers',
             address1: 'Dermatologists',
             address2: 'Westlands, NBO | 15min',
             isLike: true,
             rating: 4,
             tag: 'Wellness',
-        }} />
+          }}
+        />
       </View>
     </View>
   );
@@ -257,10 +273,10 @@ const styles = StyleSheet.create({
     marginVertical: 10,
   },
   tag: {
-      color: '#b066a4',
+    color: '#b066a4',
   },
   rating: {
-      flexDirection: 'row',
-      marginTop: 5,
+    flexDirection: 'row',
+    marginTop: 5,
   },
 });
