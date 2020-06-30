@@ -4,19 +4,23 @@ import AntDesign from 'react-native-vector-icons/AntDesign';
 
 const menus = ['home', 'search1', 'hearto', 'calendar', 'user'];
 
-export default function BottomTab() {
+export default BottomTab = ({selected, onSelected}) => {
   return (
     <View style={styles.bottoms}>
       {menus.map((e, i) => {
         return (
-          <TouchableOpacity key={i}>
-            <AntDesign name={e} size={32} />
+          <TouchableOpacity key={i} onPress={() => onSelected(i)}>
+            <AntDesign
+              color={selected == i ? '#9E70A9' : '#222'}
+              name={e}
+              size={32}
+            />
           </TouchableOpacity>
         );
       })}
     </View>
   );
-}
+};
 
 const styles = StyleSheet.create({
   bottoms: {
