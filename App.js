@@ -38,12 +38,12 @@ const styles = StyleSheet.create({
   bg: {
     position: 'absolute',
     width: Dimensions.get('window').width,
-    height: 250,
+    height: 280,
   },
   bg1: {
     position: 'absolute',
     width: Dimensions.get('window').width,
-    height: 250,
+    height: 280,
     borderBottomRightRadius: 0,
     borderBottomLeftRadius: 0,
   },
