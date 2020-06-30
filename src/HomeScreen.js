@@ -1,8 +1,9 @@
 import React from 'react';
-import {StyleSheet, Text, View, Image} from 'react-native';
+import {StyleSheet, Text, View, Image, TouchableOpacity} from 'react-native';
 import Icon from 'react-native-vector-icons/Fontisto';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import LinearGradient from 'react-native-linear-gradient';
 
 const Face = ({icon, title, color, full}) => {
   return (
@@ -41,7 +42,7 @@ const Rating = ({rating}) => {
   );
 };
 
-export const CardHome = ({title, noHeader, info, noFooter}) => {
+export const CardHome = ({title, noHeader, info, noFooter, book}) => {
   return (
     <View style={styles.cardContainer}>
       {!noHeader && (
@@ -73,9 +74,23 @@ export const CardHome = ({title, noHeader, info, noFooter}) => {
                 <Icon name="heart" color="#e8008d" size={22} />
               </View>
             )}
+            {book && (
+              <View style={styles.bookButton}>
+                <TouchableOpacity>
+                  <LinearGradient
+                    start={{x: 0, y: 0}}
+                    end={{x: 1, y: 0}}
+                    style={styles.btnGradient}
+                    colors={['#554383', '#943F86']}>
+                    <Text style={styles.btnText}>Book Visit</Text>
+                  </LinearGradient>
+                </TouchableOpacity>
+              </View>
+            )}
           </View>
         </View>
-        <View style={styles.margin}></View>
+        {!noFooter && <View style={styles.margin} />}
+
         {!noFooter && (
           <View style={styles.cardBodyBottom}>
             <View style={styles.cardGroupIcon}>
@@ -189,6 +204,7 @@ const styles = StyleSheet.create({
   },
   cardContainer: {
     padding: 15,
+    paddingBottom: 0,
   },
   cardHeaderContainer: {
     flexDirection: 'row',
@@ -278,5 +294,18 @@ const styles = StyleSheet.create({
   rating: {
     flexDirection: 'row',
     marginTop: 5,
+  },
+  bookButton: {
+    flexDirection: 'row',
+    marginTop: 20,
+  },
+  btnGradient: {
+    padding: 10,
+    borderRadius: 40,
+  },
+  btnText: {
+    color: '#fff',
+    fontSize: 14,
+    fontWeight: 'bold',
   },
 });

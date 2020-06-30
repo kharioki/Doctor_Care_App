@@ -36,6 +36,7 @@ const Header = () => {
             style={[styles.inputText, {color: '#9770a3'}]}
             value="Current Location"
           />
+          <Text>12 ml</Text>
         </View>
       </View>
     </View>
@@ -100,6 +101,7 @@ const ListCard = () => {
         title="Your Next Appointment"
         noHeader
         noFooter
+        book
         info={{
           avatar:
             'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQAxCiVB3o9i7-04KXexFIDpbxEhUkmxQ14KQ&usqp=CAU',
@@ -116,6 +118,7 @@ const ListCard = () => {
         title="Specialist in your area"
         noHeader
         noFooter
+        book
         info={{
           avatar:
             'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSiB83zs24_peVmkkZ-nKLrAzO5_ZbjJR_amg&usqp=CAU',
@@ -145,7 +148,7 @@ export default function SearchScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 15,
+    // padding: 15,
   },
   header: {
     marginTop: 20,
@@ -179,6 +182,7 @@ const styles = StyleSheet.create({
   },
   inputText: {
     padding: 10,
+    flex: 1,
   },
   mapView: {
     width: Dimensions.get('window').width,
